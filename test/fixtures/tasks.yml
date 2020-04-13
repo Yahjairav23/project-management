@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project_id: 1
+  creator_id: 1
+  asignee_id: 1
+  priority: MyString
+  description: MyString
+
+two:
+  project_id: 1
+  creator_id: 1
+  asignee_id: 1
+  priority: MyString
+  description: MyString
