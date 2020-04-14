@@ -1,2 +1,20 @@
-<h1>Projects#new</h1>
-<p>Find me in app/views/projects/new.html.erb</p>
+<h1>Create a New Project</h1>
+
+<%= form_for @project do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :start_date %>
+    <%= f.date_field :start_date %>
+    <%= f.label :end_date %>
+    <%= f.date_field :end_date %>
+
+    <%= f.label :status %>
+    <%= f.text_field :status %>
+
+    <%= f.label :team %>
+    <%= f.collection_select(:team_id, Team.all, :id, :name) %>
+    
+    <%= f.submit %> 
+<% end %>
+

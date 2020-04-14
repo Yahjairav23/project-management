@@ -7,6 +7,20 @@ class ProjectsController < ApplicationController
   end
 
   def show
+     #move to model 
+    @completed_tasks = []
+    @project.tasks.each do |t|
+      if t.status == "Complete"
+        @completed_tasks << t 
+      end 
+    end 
+    @incomplete_tasks = []
+    @project.tasks.each do |t|
+      if t.status != "Complete"
+        @incomplete_tasks << t 
+      end 
+    end 
+
   end
 
   def new

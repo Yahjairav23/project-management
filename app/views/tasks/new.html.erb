@@ -1,0 +1,29 @@
+<h1>Create a New Task</h1>
+
+<%= form_for @task do |f| %>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+
+    <%= f.label :due_date %>
+    <%= f.date_field :due_date %>
+
+    <%= f.label :project %>
+    <%= f.collection_select(:project_id, Project.all, :id, :name) %>
+
+    <%= f.label :assigned_to %>
+    <%= f.collection_select(:assignee_id, User.all, :id, :name) %>
+
+    <%= f.label :priority %>
+    <%= f.text_field :priority %>
+
+    <%= f.label :status %>
+    <%= f.text_field :status %>
+
+    <%= f.label :created_by %>
+    <%= f.collection_select(:creator_id, User.all, :id, :name) %>
+
+    <%= f.submit %> 
+
+
+<% end %>
+
