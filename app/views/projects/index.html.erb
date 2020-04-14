@@ -1,8 +1,8 @@
 <h1>Projects Index</h1>
-<p>Here is a list of all projects:</p>
+<p>Tasks for this project:</p>
 
 <ul>
-   <% @projects.each do |p|
+   <% @projects.each do |p| %>
       <li> 
          <%=  link_to p.name, project_path(p.id) %>
       </li>

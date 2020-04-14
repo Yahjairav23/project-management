@@ -4,13 +4,13 @@
 <div>Description: <%= @project.description %> </div>
 <div>Status: <%= @project.status %> </div>
 
-<div>Team: <%= @project.team.name %> </div>
+<div>Team: <%= link_to @project.team.name, team_path(@project.team.id) %> </div>
 <p>Here is a list of Tasks: </p>
 <div>
 
 <ul>
-<% @project.tasks.each do |t|
-       <li> <%= t.description %> </li>
+<% @project.tasks.each do |t| %> 
+       <li> <%= t.description %> --- <%= link_to t.assignee.name, user_path(t.assignee.id) %> --- <%= t.due_date%> </li>
     <% end %> 
 </ul>
 

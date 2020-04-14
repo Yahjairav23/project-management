@@ -1,2 +1,12 @@
-<h1>Tasks#show</h1>
-<p>Find me in app/views/tasks/show.html.erb</p>
+<h1>Task: </h1>
+<h3><%= @task.description %></h3>
+
+<h4>Status: <%= @task.status %></h4>
+
+<div>Assigned to: <%= @task.assignee.name %></div>
+<div>Created by: <%= @task.creator.name %></div>
+
+<br>
+<div>Mark this Task Complete</div>
+<div>Edit this Task</div>
+<div>Return to Project</div>
