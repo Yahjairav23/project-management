@@ -1,2 +1,13 @@
-<h1>Tasks#show</h1>
-<p>Find me in app/views/tasks/show.html.erb</p>
+<h1>Task: <%= @task.description %></h3>
+
+<h4>Status: <%= @task.status %></h4>
+<h4>Project: <%= link_to @task.project.name, project_path(@task.project.id) %></h4>
+
+<div>Assigned to: <%= link_to @task.assignee.name, user_path(@task.assignee.id) %></div>
+<div>Created by: <%= link_to @task.creator.name, user_path(@task.creator.id) %></div>
+
+<br>
+<div>Mark this Task Complete</div>
+<div><%= link_to "Edit this Task", edit_task_path(@task) %></div>
+<div><%= link_to 'Delete this Task', @task, method: :delete, data: { confirm: 'Are you sure?' } %>
+<div><%= link_to "Return to Project", project_path(@task.project.id) %></div>

@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
+
+  before_action :user_finder, only: [:show, :edit, :update]
+  
   def show
-    @user = User.find(params[:id])
   end
 
   def new
@@ -8,17 +10,28 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
+    #where should we place the link for this?
+    @user = User.new(user_params)
+    if @user.valid?
+      @user.save
+      redirect_to user_path(@user)
+    else
+      render :new
+    end
     #create validation errors
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     @user.update(user_params)
+    if @user.valid?
+      @user.save 
+      redirect_to user_path(@user)
+    else
+      render :edit
+    end
     #create validaion errors
   end
 
@@ -28,6 +41,9 @@ class UsersController < ApplicationController
 
   private
 
+  def user_finder
+    @user = User.find(params[:id])
+  end
   def user_params
     params.require(:user).permit(:name, :age, :bio, :team_id)
   end

@@ -1,20 +1,70 @@
 <h1>Project: <%= @project.name %></h1>
+<h3><%= @project.description %>  </h3>
+
 <div>State Date: <%= @project.start_date %> </div>
 <div>End Date: <%= @project.end_date %> </div>
-<div>Description: <%= @project.description %> </div>
 <div>Status: <%= @project.status %> </div>
+<div>Team: <%= link_to @project.team.name, team_path(@project.team.id) %> </div>
 
-<div>Team: <%= @project.team.name %> </div>
-<p>Here is a list of Tasks: </p>
-<div>
-
-<ul>
-<% @project.tasks.each do |t|
-       <li> <%= t.description %> </li>
-    <% end %> 
-</ul>
-
-</div>
+<p><b>INCOMPLETE TASKS: </b></p>
 
 
+<table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Assigned To</th>
+      <th>Due Date</th>
+      <th>Status</th>
+    </tr>
+  </thead>
 
+  <tbody>
+  <% @incomplete_tasks.each do |t| %>
+      <tr>
+      <td><%=  link_to t.description, task_path(t.id) %></td>
+      <td><%=  link_to t.assignee.name, user_path(t.assignee.id) %></td>
+      <td><%=  t.due_date %></td>
+      <td><%=  t.status %></td>
+      </tr>
+   <% end %> 
+</tbody>
+</table>
+
+
+
+
+
+
+<p><b>COMPLETED TASKS</b></p>
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Assigned To</th>
+      <th>Due Date</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @completed_tasks.each do |t| %>
+      <tr>
+      <td><%=  link_to t.description, task_path(t.id) %></td>
+      <td><%=  link_to t.assignee.name, user_path(t.assignee.id) %></td>
+      <td><%=  t.due_date %></td>
+      <td><%=  t.status %></td>
+      </tr>
+   <% end %> 
+</tbody>
+</table>
+
+
+
+<p>MENU</p>
+<div><%= link_to "Edit this Project", edit_project_path(@project.id) %></div>
+<div><%= link_to "Delete this Project", @project, method: :delete, data: { confirm: 'Are you sure?' } %> </div>
+<div><%= link_to "Return to Project Index", projects_path %></div>

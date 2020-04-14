@@ -14,5 +14,12 @@
     <li><%=link_to project.name, project_path(project)%></li>
 <%end%>
 </ul>
+<br>
+
+<%=link_to "Create New Project", new_project_path%>
+<!-- need an add user to team button --> <br>
+<%=link_to "Edit Team Name", edit_team_path%>
+<%=link_to "Delete Team", team_path(@team), :method => :delete%>
+
 
 

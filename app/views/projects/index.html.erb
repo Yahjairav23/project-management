@@ -1,10 +1,30 @@
 <h1>Projects Index</h1>
-<p>Here is a list of all projects:</p>
+<p>List of All Projects:</p>
 
-<ul>
-   <% @projects.each do |p|
-      <li> 
-         <%=  link_to p.name, project_path(p.id) %>
-      </li>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Status</th>
+      <th>Team</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @projects.each do |p| %>
+      <tr>
+      <td><%=  link_to p.name, project_path(p.id) %></td>
+      <td><%=  p.start_date %></td>
+      <td><%=  p.end_date %></td>
+      <td><%=  p.status %></td>
+      <td><%=  link_to p.team.name, team_path(p.team.id) %></td>
+      </tr>
    <% end %> 
-</ul>
+</tbody>
+</table>
+
+<p>MENU</p>
+<div><%= link_to "Create a New Project", new_project_path %> </div>

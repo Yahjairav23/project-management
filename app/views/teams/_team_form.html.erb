@@ -1,0 +1,9 @@
+<%=render partial: "shared/error_messages", locals: {new_object: @team}%>
+
+<%=form_for @team do |t|%>
+    <%=t.label :name%>
+    <%=t.text_field :name%>
+
+    <%=t.submit%>
+
+<%end%>

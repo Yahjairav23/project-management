@@ -10,6 +10,9 @@ class User < ApplicationRecord
     
     has_many :projects, through: :created_tasks
     has_many :projects, through: :assigned_tasks
+
+    validates :name, presence: true
+    validates :age, presence: true
     
 
 
