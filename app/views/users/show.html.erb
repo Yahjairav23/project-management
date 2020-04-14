@@ -1,4 +1,17 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1><%=@user.name%></h1>
+<h3><%=@user.age%></h3>
+<h3>Bio:</h3>
+<h4><%=@user.bio%></h4>
+<br>
+<br>
+<h3>Tasks:</h3>
+<ul>
+<%@user.assigned_tasks.each do |task|%>
+    <li><%=link_to task.project.name, project_path(task.project)%> - <%=link_to task.description, task_path(task)%></li>
+<%end%>
+</ul>
+
+
+
 
 

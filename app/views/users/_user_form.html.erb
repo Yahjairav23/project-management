@@ -1,0 +1,12 @@
+<%=form_for @user do |t|%> 
+    <label>Name:</label>
+    <%=t.text_field :name%><br>
+    <label>Age:</label>
+    <%=t.text_field :age%><br>
+    <label>Bio:</label>
+    <%=t.text_field :bio%><br>
+    <label>Please select the team you are a part of, if any:</label>
+    <%=t.collection_select :team_id, Team.all, :id, :name%><br>
+
+    <%=t.submit%>
+<%end%>

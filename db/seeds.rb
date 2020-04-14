@@ -37,37 +37,37 @@ project6= Project.create(team_id: team2.id, name: "Mod 2 Rails Project", start_d
 
 #TEAM 1 PROJECTS
 #project 1
-task1= Task.create(project_id: project1.id, creator_id: u1.id, asignee_id: u1.id, priority: "High", description: "Call a constractor to get a quote.", due_date:"2020-02-20", status: "Complete")
-task2= Task.create(project_id: project1.id, creator_id: u1.id, asignee_id: u1.id, priority: "Medium", description: "Schedule demo day.", due_date:"2020-02-20", status: "Complete")
-task3= Task.create(project_id: project1.id, creator_id: u1.id, asignee_id: u1.id, priority: "Low", description: "Buy magazines for kitchen ideas.", due_date:"2020-02-20", status: "Complete")
+task1= Task.create(project_id: project1.id, creator_id: u1.id, assignee_id: u1.id, priority: "High", description: "Call a constractor to get a quote.", due_date:"2020-02-20", status: "Complete")
+task2= Task.create(project_id: project1.id, creator_id: u1.id, assignee_id: u1.id, priority: "Medium", description: "Schedule demo day.", due_date:"2020-02-20", status: "Complete")
+task3= Task.create(project_id: project1.id, creator_id: u1.id, assignee_id: u1.id, priority: "Low", description: "Buy magazines for kitchen ideas.", due_date:"2020-02-20", status: "Complete")
 
 # #project 2
-task4= Task.create(project_id: project2.id, creator_id: u2.id, asignee_id: u2.id, priority: "Medium", description: "Draft ideas and model for approval", due_date:"2020-02-20", status: "Complete")
-task5= Task.create(project_id: project2.id, creator_id: u3.id, asignee_id: u3.id, priority: "Medium", description: "Pitch idea to flatiron team", due_date:"2020-02-20", status: "Complete")
-task6= Task.create(project_id: project2.id, creator_id: u2.id, asignee_id: u2.id, priority: "High", description: "Build out bicycle version of app.", due_date:"2020-02-20", status: "In Progress")
+task4= Task.create(project_id: project2.id, creator_id: u2.id, assignee_id: u2.id, priority: "Medium", description: "Draft ideas and model for approval", due_date:"2020-02-20", status: "Complete")
+task5= Task.create(project_id: project2.id, creator_id: u3.id, assignee_id: u3.id, priority: "Medium", description: "Pitch idea to flatiron team", due_date:"2020-02-20", status: "Complete")
+task6= Task.create(project_id: project2.id, creator_id: u2.id, assignee_id: u2.id, priority: "High", description: "Build out bicycle version of app.", due_date:"2020-02-20", status: "In Progress")
 
 
 # #project 3
-task7= Task.create(project_id: project3.id, creator_id: u2.id, asignee_id: u2.id, priority: "Medium", description: "Draft ideas and model for approval", due_date:"2020-02-20", status: "Complete")
-task8= Task.create(project_id: project3.id, creator_id: u3.id, asignee_id: u3.id, priority: "Medium", description: "Pitch idea to flatiron team", due_date:"2020-02-20", status: "Complete")
-task9= Task.create(project_id: project3.id, creator_id: u2.id, asignee_id: u2.id, priority: "High", description: "Build out bicycle version of app.", due_date:"2020-02-20", status: "In Progress")
+task7= Task.create(project_id: project3.id, creator_id: u2.id, assignee_id: u2.id, priority: "Medium", description: "Draft ideas and model for approval", due_date:"2020-02-20", status: "Complete")
+task8= Task.create(project_id: project3.id, creator_id: u3.id, assignee_id: u3.id, priority: "Medium", description: "Pitch idea to flatiron team", due_date:"2020-02-20", status: "Complete")
+task9= Task.create(project_id: project3.id, creator_id: u2.id, assignee_id: u2.id, priority: "High", description: "Build out bicycle version of app.", due_date:"2020-02-20", status: "In Progress")
 
 
 # #project 4
-task10= Task.create(project_id: project4.id, creator_id: u3.id, asignee_id: u3.id, priority: "High", description: "Send out save the date", due_date:"2020-02-20", status: "In Progress")
-task11= Task.create(project_id: project4.id, creator_id: u3.id, asignee_id: u3.id, priority: "Medium", description: "Plan schedule of events ", due_date:"2020-02-20", status: "Planned")
-task12= Task.create(project_id: project4.id, creator_id: u3.id, asignee_id: u3.id, priority: "Low", description: "Send out reminders.", due_date:"2020-02-20", status: "Planned")
+task10= Task.create(project_id: project4.id, creator_id: u3.id, assignee_id: u3.id, priority: "High", description: "Send out save the date", due_date:"2020-02-20", status: "In Progress")
+task11= Task.create(project_id: project4.id, creator_id: u3.id, assignee_id: u3.id, priority: "Medium", description: "Plan schedule of events ", due_date:"2020-02-20", status: "Planned")
+task12= Task.create(project_id: project4.id, creator_id: u3.id, assignee_id: u3.id, priority: "Low", description: "Send out reminders.", due_date:"2020-02-20", status: "Planned")
 
 
 #TEAM 2 PROJECTS
 # #project 5
-task13= Task.create(project_id: project5.id, creator_id: u4.id, asignee_id: u4.id, priority: "High", description: "Submit first draft ideas for approval", due_date:"2020-04-20", status: "Complete")
-task14= Task.create(project_id: project5.id, creator_id: u4.id, asignee_id: u5.id, priority: "High", description: "Create skateboard model", due_date:"2020-05-06", status: "In Progress")
-task15= Task.create(project_id: project5.id, creator_id: u4.id, asignee_id: u5.id, priority: "Low", description: "Add stretch features", due_date:"2020-05-20", status: "Planned")
+task13= Task.create(project_id: project5.id, creator_id: u4.id, assignee_id: u4.id, priority: "High", description: "Submit first draft ideas for approval", due_date:"2020-04-20", status: "Complete")
+task14= Task.create(project_id: project5.id, creator_id: u4.id, assignee_id: u5.id, priority: "High", description: "Create skateboard model", due_date:"2020-05-06", status: "In Progress")
+task15= Task.create(project_id: project5.id, creator_id: u4.id, assignee_id: u5.id, priority: "Low", description: "Add stretch features", due_date:"2020-05-20", status: "Planned")
 
 #project 6
-task16= Task.create(project_id: project6.id, creator_id: u5.id, asignee_id: u5.id, priority: "Low", description: "Create the homepage for website", due_date:"2020-04-20", status: "In Progress")
-task17= Task.create(project_id: project6.id, creator_id: u6.id, asignee_id: u6.id, priority: "Medium", description: "Create form pages", due_date:"2020-04-30", status: "Planned")
-task18= Task.create(project_id: project6.id, creator_id: u5.id, asignee_id: u5.id, priority: "High", description: "Launch application", due_date:"2020-05-6", status: "Planned")
+task16= Task.create(project_id: project6.id, creator_id: u5.id, assignee_id: u5.id, priority: "Low", description: "Create the homepage for website", due_date:"2020-04-20", status: "In Progress")
+task17= Task.create(project_id: project6.id, creator_id: u6.id, assignee_id: u6.id, priority: "Medium", description: "Create form pages", due_date:"2020-04-30", status: "Planned")
+task18= Task.create(project_id: project6.id, creator_id: u5.id, assignee_id: u5.id, priority: "High", description: "Launch application", due_date:"2020-05-6", status: "Planned")
 
 

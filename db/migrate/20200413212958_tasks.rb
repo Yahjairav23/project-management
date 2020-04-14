@@ -3,7 +3,7 @@ class Tasks < ActiveRecord::Migration[6.0]
     create_table :tasks do |t|
       t.integer :project_id
       t.integer :creator_id
-      t.integer :asignee_id
+      t.integer :assignee_id
       t.string :priority
       t.string :description
       t.date :due_date
