@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_13_212958) do
+ActiveRecord::Schema.define(version: 2020_04_15_182640) do
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "task_id"
+    t.string "comment"
+  end
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
@@ -33,6 +39,7 @@ ActiveRecord::Schema.define(version: 2020_04_13_212958) do
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.date "date"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -48,6 +55,8 @@ ActiveRecord::Schema.define(version: 2020_04_13_212958) do
     t.integer "team_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "username"
+    t.string "password_digest"
   end
 
 end

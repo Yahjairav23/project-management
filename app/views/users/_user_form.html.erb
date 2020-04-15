@@ -9,6 +9,10 @@
     <%=t.text_field :bio%><br>
     <label>Please select the team you are a part of, if any:</label>
     <%=t.collection_select :team_id, Team.all, :id, :name, { include_blank: true}%><br>
+    <label>Username:</label>
+    <%=t.text_field :username%><br>
+    <label>Password:</label>
+    <%=t.password_field :password%>
 
     <%=t.submit%>
 <%end%>

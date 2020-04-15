@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    has_secure_password
 
     belongs_to :team, optional: true
     
@@ -10,9 +11,11 @@ class User < ApplicationRecord
     
     has_many :projects, through: :created_tasks
     has_many :projects, through: :assigned_tasks
+    has_many :comments 
 
     validates :name, presence: true
     validates :age, presence: true
+    validates :username, presence: true, uniqueness: {case_sensitive: false}
     
 
 

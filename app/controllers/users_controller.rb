@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
 
+  before_action :authorized, except: [:new, :create, :home]
   before_action :user_finder, only: [:show, :edit, :update]
   
   def show
+    @task = Task.new
   end
 
   def new
@@ -14,6 +16,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.valid?
       @user.save
+      session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
       render :new
@@ -37,6 +40,10 @@ class UsersController < ApplicationController
 
   def destroy
     User.destroy(params[:id])
+  end
+
+  def home
+        
   end
 
   private

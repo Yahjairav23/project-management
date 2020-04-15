@@ -10,6 +10,13 @@
   </head>
 
   <body>
+    <% if session[:user_id].nil? %>
+      <div><%=link_to "Please Login", login_path%></div>
+    <%else%>
+      <div>Welcome back, <%=current_user.name%> !</div>
+      <div><%=link_to "Logout", logout_path%></div>
+    <%end%>
+
     <%= yield %>
   </body>
 </html>

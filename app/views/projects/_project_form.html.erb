@@ -1,4 +1,4 @@
-<%=render partial: "shared/error_messages", locals: {new_object: @task}%>
+<%=render partial: "shared/error_messages", locals: {new_object: @project}%>
 
 <%= form_for @project do |f| %>
     <%= f.label :name %>
@@ -17,6 +17,36 @@
 
     <%= f.label :team %>
     <%= f.collection_select(:team_id, Team.all, :id, :name) %>
+
+
+    <h4>Tasks:</h4>
+
+    <% 3.times { %>
+    <%=  f.fields_for :tasks do |t| %>
+        <div>
+        <%= t.label :description %>
+        <%= t.text_field :description %>
+    
+        <%= t.label :due_date %>
+        <%= t.date_field :due_date %>
+    
+        <%= t.label :project %>
+        <%= t.collection_select(:project_id, Project.all, :id, :name) %>
+    
+        <%= t.label :assigned_to %>
+        <%= t.collection_select(:assignee_id, User.all, :id, :name) %>
+    
+        <%= t.label :priority %>
+        <%= t.select :priority, options_for_select([ "LOW", "MEDIUM", "HIGH"]) %>
+    
+        <%= t.label :status %>
+        <%= t.select :status, options_for_select([ "Planned", "In Progress", "Complete"]) %>
+    
+        <%= t.label :created_by %>
+        <%= t.collection_select(:creator_id, User.all, :id, :name) %>
+        </div>
+    <% end %>
+    <% } %> 
 
     <%= f.submit %> 
 <% end %>

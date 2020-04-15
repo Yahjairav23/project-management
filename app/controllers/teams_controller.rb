@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
-
-  before_action :user_finder, only: [:show, :edit, :update]
+  before_action :authorized
+  before_action :find_team, only: [:show, :edit, :update]
 
   def show
   end

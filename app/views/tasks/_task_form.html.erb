@@ -14,10 +14,10 @@
     <%= f.collection_select(:assignee_id, User.all, :id, :name) %>
 
     <%= f.label :priority %>
-    <%= f.select :priority, options_for_select([["Select One", ""], "LOW", "MEDIUM", "HIGH"]) %>
+    <%= f.select :priority, options_for_select([ "LOW", "MEDIUM", "HIGH"]) %>
 
     <%= f.label :status %>
-    <%= f.select :status, options_for_select([["Select One", ""], "Planned", "In Progress", "Complete"]) %>
+    <%= f.select :status, options_for_select(["Planned", "In Progress", "Complete"]) %>
 
     <%= f.label :created_by %>
     <%= f.collection_select(:creator_id, User.all, :id, :name) %>

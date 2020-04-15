@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-
+  before_action :authorized
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -24,6 +24,8 @@ class ProjectsController < ApplicationController
       end 
     end 
 
+    @task = Task.new 
+
   end
 
   def new
@@ -32,17 +34,22 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @project.save
-    redirect_to project_path(@project.id)
+    if @project.valid?
+      @project.save
+      redirect_to project_path(@project)
+    else
+      render :new
+    end
   end
 
   def edit
   end
 
   def update
-    if @project.update(project_params)
+    @project.update(project_params)
+    if @project.valid?
       @project.save
-      redirect_to project_path(@project.id)
+      redirect_to project_path(@project)
     else 
       render :edit 
     end 

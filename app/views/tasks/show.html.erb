@@ -1,10 +1,47 @@
 <h1>Task: <%= @task.description %></h3>
 
 <h4>Status: <%= @task.status %></h4>
+<h4>Priority: <%= @task.priority %></h4>
+<h4>Due Date: <%= @task.due_date %></h4>
 <h4>Project: <%= link_to @task.project.name, project_path(@task.project.id) %></h4>
 
 <div>Assigned to: <%= link_to @task.assignee.name, user_path(@task.assignee.id) %></div>
 <div>Created by: <%= link_to @task.creator.name, user_path(@task.creator.id) %></div>
+
+<p>WRITE A COMMENT</p>
+
+
+<%= form_for @comment do |f| %>
+    <%= f.label :comment %>
+    <%= f.text_field :comment %>
+
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :task_id, value: @task.id %>
+
+    <p><%= f.submit %> </p>
+
+<% end %>
+
+
+<p>COMMENTS</p>
+
+    <% if @task_comments.nil? %> 
+        <i>There are no comments on this task. Write one above!</i>
+
+    <% else %>
+        <div>
+            <% @task_comments.each do |c| %>
+                <div>----------------------------</div>
+                <div>Date: <%= c.created_at %> </div>
+                <div>By: <%= link_to c.user.name, user_path(c.user.id) %> </div> 
+                <div>Comment: </div>
+                <div> <%= c.comment %> </div>
+                <div>----------------------------</div>
+            <% end %> 
+        </div>
+    <% end %>
+
+
 
 <br>
 <div>Mark this Task Complete</div>

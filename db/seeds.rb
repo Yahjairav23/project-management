@@ -15,12 +15,12 @@ team1= Team.create(name:"Team {Browns}")
 team2= Team.create(name:"Team Flatiron")
 
 #USERS
-u1 = User.create(name: "Lilly", age: "27", bio: "Ready to get rolling!", team_id: team1.id)
-u2 = User.create(name: "Norris", age: "30", bio: "Did someone say 'Project'???", team_id: team1.id)
-u3 = User.create(name: "Anne", age: "24", bio: "Nothing but finished tasks.", team_id: team1.id)
-u4 = User.create(name: "Michael", age: "24", bio: "Project Master", team_id: team2.id)
-u5 = User.create(name: "Gina", age: "32", bio: "My kids are my life... sometimes.", team_id: team2.id)
-u6 = User.create(name: "Brandon", age: "28", bio: "Task Complete", team_id: team2.id)
+u1 = User.create(name: "Lilly", age: "27", bio: "Ready to get rolling!", team_id: team1.id, username: "lilly", password: "lpassword")
+u2 = User.create(name: "Norris", age: "30", bio: "Did someone say 'Project'???", team_id: team1.id, username: "norris", password: "npassword")
+u3 = User.create(name: "Anne", age: "24", bio: "Nothing but finished tasks.", team_id: team1.id, username: "anne", password: "apassword")
+u4 = User.create(name: "Michael", age: "24", bio: "Project Master", team_id: team2.id, username: "michael", password: "mpassword")
+u5 = User.create(name: "Gina", age: "32", bio: "My kids are my life... sometimes.", team_id: team2.id, username: "gina", password: "gpassword")
+u6 = User.create(name: "Brandon", age: "28", bio: "Task Complete", team_id: team2.id, username: "brandon", password: "bpassword")
 
 
 #PROJECTS 

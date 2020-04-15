@@ -1,8 +1,10 @@
 class TasksController < ApplicationController
-  
+  before_action :authorized
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def show
+    @comment = Comment.new 
+    @task_comments = Comment.all.where(task_id: @task.id)
   end
 
   def new
@@ -11,15 +13,23 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    @task.save
-    redirect_to task_path(@task.id)
+    if @task.valid?
+      @task.save
+      redirect_to task_path(@task.id)
+    else
+      rend :new
+    end 
   end
+
+
+
 
   def edit
   end 
 
   def update
-    if @task.update(task_params)
+    @task.update(task_params)
+    if @task.valid?
       @task.save
       redirect_to task_path(@task.id)
     else 
