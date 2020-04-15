@@ -18,13 +18,12 @@ class ProjectsController < ApplicationController
 
     #separates out incomplete tasks 
     @incomplete_tasks = []
-    @incomplete_tasks.order("due_date DESC")
     @project.tasks.each do |t|
       if t.status != "Complete"
         @incomplete_tasks << t 
       end 
     end 
-
+    @incomplete_tasks = @incomplete_tasks.sort_by {|t| t[:due_date]}
     @task = Task.new 
 
   end
@@ -39,6 +38,7 @@ class ProjectsController < ApplicationController
       @project.save
       redirect_to project_path(@project)
     else
+      3.times {@project.tasks.build}
       render :new
     end
   end
@@ -77,7 +77,7 @@ class ProjectsController < ApplicationController
   end
 
   def project_params 
-    params.require(:project).permit(:name, :start_date, :end_date, :description, :team_id, :status)
+    params.require(:project).permit(:name, :start_date, :end_date, :description, :team_id, :status, tasks_attributes: [:project_id, :creator_id, :assignee_id, :priority, :description, :due_date, :status, :created_location])
   end 
 
 

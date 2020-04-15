@@ -18,5 +18,8 @@ class User < ApplicationRecord
     validates :username, presence: true, uniqueness: {case_sensitive: false}
     
 
+    # def user_completed_tasks_count
+    #     Task.where(id: )
+    # end 
 
 end

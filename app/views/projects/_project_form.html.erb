@@ -29,9 +29,8 @@
     
         <%= t.label :due_date %>
         <%= t.date_field :due_date %>
-    
-        <%= t.label :project %>
-        <%= t.collection_select(:project_id, Project.all, :id, :name) %>
+
+        <%= t.hidden_field :project_id, value: @project.id %>
     
         <%= t.label :assigned_to %>
         <%= t.collection_select(:assignee_id, User.all, :id, :name) %>

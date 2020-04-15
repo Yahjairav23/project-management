@@ -16,9 +16,16 @@ class TasksController < ApplicationController
     @task= current_user.created_tasks.build(task_params)
     if @task.valid?
       @task.save
-      redirect_to task_path(@task.id)
+      
+      if @task.created_location == "project" 
+          redirect_to project_path(@task.project_id)
+
+      # #if created from USER page, reload USEER page after task creation
+        else
+          redirect_to user_path(current_user)
+        end 
     else
-      rend :new
+      render :new
     end 
   end
 
@@ -55,7 +62,7 @@ class TasksController < ApplicationController
   end
 
   def task_params 
-    params.require(:task).permit(:project_id, :creator_id, :assignee_id, :priority, :description, :due_date, :status)
+    params.require(:task).permit(:project_id, :creator_id, :assignee_id, :priority, :description, :due_date, :status, :created_location)
   end 
 
 

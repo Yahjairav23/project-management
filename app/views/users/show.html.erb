@@ -68,6 +68,8 @@
     <%= f.label :status %>
     <%= f.select :status, options_for_select(["Planned", "In Progress", "Complete"]) %>
 
+    <%= f.hidden_field :created_location, value: "user" %>
+
     <p><%= f.submit %> </p>
 
 <% end %>

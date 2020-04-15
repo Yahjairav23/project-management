@@ -1,0 +1,26 @@
+
+<%=render partial: "shared/error_messages", locals: {new_object: @task}%>
+
+<%= form_for @task do |f| %>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+
+    <%= f.label :due_date %>
+    <%= f.date_field :due_date %>
+
+    <%= f.label :assigned_to %>
+    <%= f.collection_select(:assignee_id, User.all, :id, :name) %>
+
+    <%= f.label :priority %>
+    <%= f.select :priority, options_for_select([ "LOW", "MEDIUM", "HIGH"]) %>
+
+    <%= f.label :status %>
+    <%= f.select :status, options_for_select(["Planned", "In Progress", "Complete"]) %>
+
+    
+    <%= f.hidden_field :project_id, value: @project.id %>
+    <%= f.hidden_field :created_location, value: "project" %>
+
+    <p><%= f.submit %> </p>
+
+<% end %>

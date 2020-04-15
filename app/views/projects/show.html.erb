@@ -74,29 +74,8 @@
 
 <h4> CREATE A NEW TASK FOR THIS PROJECT </h4>
 
-<%= form_for @task do |f| %>
-    <%= f.label :description %>
-    <%= f.text_field :description %>
+<%=render "task_form"%>
 
-    <%= f.label :due_date %>
-    <%= f.date_field :due_date %>
-
-    <%= f.hidden_field :project_id, value: @project.id %>
-
-    <%= f.label :assigned_to %>
-    <%= f.collection_select(:assignee_id, User.all, :id, :name) %>
-
-    <%= f.label :priority %>
-    <%= f.select :priority, options_for_select([ "LOW", "MEDIUM", "HIGH"]) %>
-
-    <%= f.label :status %>
-    <%= f.select :status, options_for_select(["Planned", "In Progress", "Complete"]) %>
-
-    
-
-    <p><%= f.submit %> </p>
-
-<% end %>
 
 
 <p>MENU</p>

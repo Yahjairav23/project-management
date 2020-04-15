@@ -13,10 +13,9 @@ class Task < ApplicationRecord
     validates :status, presence: true 
     validates :status, acceptance: { accept: ['Planned', 'In Progress', 'Complete'] }
 
+    validates :due_date, presence: true 
 
-    # def task_comments
-    #     @task_comments = Comment.find_by(task_id: self.id)
-    # end 
+
 
     #method that udpates the status to COMPLETE, not in use yet
     # def set_project_task_to_complete
