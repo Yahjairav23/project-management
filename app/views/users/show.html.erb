@@ -16,25 +16,38 @@
             <th>Task Description</th>
             <th>Task Due Date</th>
             <th>Task Status</th>
+            <th>Mark As Complete<th>
         </tr>
     </thead>
     
     <tbody>
-        <%@user.assigned_tasks.each do |task|%>
+        <%@ordered_tasks.each do |task|%>
         <tr>
-            
-            <td><%=link_to task.project.name, project_path(task.project)%></td>
-            <td><%=link_to task.description, task_path(task)%></td>
-            <td><%=task.due_date%></td>
-            <td><%=task.status%></td>
-            <td><%=link_to "Edit Task", edit_task_path(task)%></td>
-            <td><%=link_to "Delete Task", task_path(task), :method => :delete%></td>
-            
+            <%if task.completed?%>
+                <td><%=link_to task.project.name, project_path(task.project)%></td>
+                <td><strike><%=link_to task.description, task_path(task)%><strike></td>
+                <td><%=task.due_date%></td>
+                <td><%=task.status%></td>
+                <td>✔️</td>
+                <td><%=link_to "Edit Task", edit_task_path(task)%></td>
+                <td><%=link_to "Delete Task", task_path(task), method: :delete, data: {confirm: "Are you sure?"}%></td>
+            <%else%>
+                <td><%=link_to task.project.name, project_path(task.project)%></td>
+                <td><%=link_to task.description, task_path(task)%></td>
+                <td><%=task.due_date%></td>
+                <td><%=task.status%></td>
+                <td><%=link_to "Complete", completed_task_path(task), method: :patch%></td>
+                <td><%=link_to "Edit Task", edit_task_path(task)%></td>
+                <td><%=link_to "Delete Task", task_path(task), method: :delete, data: {confirm: "Are you sure?"}%></td>
+            <%end%>
         </tr>
         <%end%>
     </tbody>
 </table>
+
+<%if current_user == @user%>
 <br>
+
 <h4>Create A New Task</h4>
 <%= form_for @task do |f| %>
     <%= f.label :description %>
@@ -55,8 +68,6 @@
     <%= f.label :status %>
     <%= f.select :status, options_for_select(["Planned", "In Progress", "Complete"]) %>
 
-    <%= f.hidden_field :creator_id, value: @user.id %>
-
     <p><%= f.submit %> </p>
 
 <% end %>
@@ -64,6 +75,7 @@
 
 <br>
 
-<%=link_to "Edit User", edit_user_path(@user)%>
-<%=link_to "Delete User", user_path(@user), :method => :delete%>
 
+<%=link_to "Edit User", edit_user_path(@user)%>
+<%=link_to "Delete User", user_path(@user), :method => :delete, data: {confirm: "Are you sure you want to delete your profile? We'd hate to see you go!"}%>
+<%end%>

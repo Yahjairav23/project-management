@@ -10,31 +10,20 @@
 
 <p>WRITE A COMMENT</p>
 
-
-<%= form_for @comment do |f| %>
-    <%= f.label :comment %>
-    <%= f.text_field :comment %>
-
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.hidden_field :task_id, value: @task.id %>
-
-    <p><%= f.submit %> </p>
-
-<% end %>
-
+<%=render "comment_form"%>
 
 <p>COMMENTS</p>
 
-    <% if @task_comments.nil? %> 
+    <% if @task_comments == [] %> 
         <i>There are no comments on this task. Write one above!</i>
 
     <% else %>
         <div>
             <% @task_comments.each do |c| %>
                 <div>----------------------------</div>
-                <div>Date: <%= c.created_at %> </div>
-                <div>By: <%= link_to c.user.name, user_path(c.user.id) %> </div> 
-                <div>Comment: </div>
+                <div><b>Date:</b> <%= c.created_at.to_date %> </div>
+                <div><b>By:</b> <%= link_to c.user.name, user_path(c.user.id) %> </div> 
+                <div><b>Comment:</b> </div>
                 <div> <%= c.comment %> </div>
                 <div>----------------------------</div>
             <% end %> 
@@ -43,7 +32,7 @@
 
 
 
-<br>
+</br>
 <div>Mark this Task Complete</div>
 <div><%= link_to "Edit this Task", edit_task_path(@task) %></div>
 <div><%= link_to 'Delete this Task', @task, method: :delete, data: { confirm: 'Are you sure?' } %>

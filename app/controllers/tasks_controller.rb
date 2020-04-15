@@ -1,18 +1,19 @@
 class TasksController < ApplicationController
   before_action :authorized
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :completed, :destroy]
 
   def show
     @comment = Comment.new 
-    @task_comments = Comment.all.where(task_id: @task.id)
+    @task_comments = Comment.all.where(task_id: @task.id).order("created_at DESC")
   end
 
   def new
-    @task= Task.new 
+    
+    @task= current_user.created_tasks.build 
   end
 
   def create
-    @task = Task.new(task_params)
+    @task= current_user.created_tasks.build(task_params)
     if @task.valid?
       @task.save
       redirect_to task_path(@task.id)
@@ -36,6 +37,10 @@ class TasksController < ApplicationController
       render :edit 
     end 
   end 
+
+  def completed
+    @task.date = Date.today
+  end
 
   def destroy
     @task.destroy

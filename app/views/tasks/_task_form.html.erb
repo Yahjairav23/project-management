@@ -19,8 +19,6 @@
     <%= f.label :status %>
     <%= f.select :status, options_for_select(["Planned", "In Progress", "Complete"]) %>
 
-    <%= f.label :created_by %>
-    <%= f.collection_select(:creator_id, User.all, :id, :name) %>
 
     <p><%= f.submit %> </p>
 

@@ -18,6 +18,6 @@ class SessionsController < ActionController::Base
 
     def logout
         session.clear
-        redirect_to login_path
+        redirect_to home_path
     end
 end

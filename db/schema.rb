@@ -16,6 +16,8 @@ ActiveRecord::Schema.define(version: 2020_04_15_182640) do
     t.integer "user_id"
     t.integer "task_id"
     t.string "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "projects", force: :cascade do |t|

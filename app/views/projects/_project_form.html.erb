@@ -42,8 +42,6 @@
         <%= t.label :status %>
         <%= t.select :status, options_for_select([ "Planned", "In Progress", "Complete"]) %>
     
-        <%= t.label :created_by %>
-        <%= t.collection_select(:creator_id, User.all, :id, :name) %>
         </div>
     <% end %>
     <% } %> 

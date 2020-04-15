@@ -29,7 +29,9 @@ class Task < ApplicationRecord
     #     redirect_to task_path 
     # end 
 
-
+    def completed?
+        !date.blank?
+    end
     #check if self.status == "Complete"
     #if true print done
     #if false 

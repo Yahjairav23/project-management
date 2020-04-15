@@ -4,6 +4,8 @@ class CreateComments < ActiveRecord::Migration[6.0]
       t.integer :user_id
       t.integer :task_id
       t.string :comment
+
+      t.timestamps
     end
   end
 end

@@ -10,11 +10,23 @@
   </head>
 
   <body>
+  <div>
     <% if session[:user_id].nil? %>
-      <div><%=link_to "Please Login", login_path%></div>
+      <%=link_to "Please Login", login_path%>
+      <%=link_to "Sign Up", new_user_path%>
     <%else%>
-      <div>Welcome back, <%=current_user.name%> !</div>
-      <div><%=link_to "Logout", logout_path%></div>
+      Welcome back, <%=current_user.name%> !
+      <%=link_to "Logout", logout_path%>
+    <%end%>
+      </div>
+    <br>
+    <%if !current_user.nil?%>
+      <div class="topnav">
+        <%=link_to "User", user_path(current_user)%>
+        <%=link_to "Team", team_path(current_user.team_id)%>
+        <%= link_to "Projects", projects_path %>
+        
+      </div>
     <%end%>
 
     <%= yield %>

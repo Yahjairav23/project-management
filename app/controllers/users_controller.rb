@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :user_finder, only: [:show, :edit, :update]
   
   def show
+    @ordered_tasks = @user.assigned_tasks.order("due_date")
     @task = Task.new
   end
 
