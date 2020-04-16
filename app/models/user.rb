@@ -1,7 +1,8 @@
 class User < ApplicationRecord
     has_secure_password
 
-    belongs_to :team, optional: true
+    has_many :userteams
+    has_many :teams, through: :userteams
     
     has_many :created_tasks, :class_name => 'Task', :foreign_key => 'creator_id', dependent: :destroy
     # has_many :creators, through: :created_tasks, source: :creator
@@ -18,8 +19,6 @@ class User < ApplicationRecord
     validates :username, presence: true, uniqueness: {case_sensitive: false}
     
 
-    # def user_completed_tasks_count
-    #     Task.where(id: )
-    # end 
+   
 
 end

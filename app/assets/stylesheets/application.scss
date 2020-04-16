@@ -16,7 +16,7 @@
 
  /* Add a black background color to the top navigation */
 .topnav {
-    background-color: #333;
+    background-color: rgb(170, 235, 208);
     overflow: hidden;
   }
   
@@ -45,3 +45,4 @@
 
   @import "bootstrap-sprockets";
   @import "bootstrap";
+  @import "rails_bootstrap_forms";

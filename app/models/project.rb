@@ -2,6 +2,8 @@ class Project < ApplicationRecord
 
     belongs_to :team 
     has_many :tasks 
+    accepts_nested_attributes_for :tasks,
+        reject_if: Proc.new {|attributes| attributes[:description].blank?}
     # has_many :creators, through: :tasks, source: :creator 
     # has_many :assignees, through: :tasks, source: :assignee_id 
     validates :name, presence: true 

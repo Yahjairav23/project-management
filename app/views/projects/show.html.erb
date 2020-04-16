@@ -4,7 +4,7 @@
 <div>State Date: <%= @project.start_date %> </div>
 <div>End Date: <%= @project.end_date %> </div>
 <div>Status: <%= @project.status %> </div>
-<div>Team: <%= link_to @project.team.name, team_path(@project.team.id) %> </div>
+<div>Team: <%= link_to @project.team.name, team_path(@project.team_id) %> </div>
 
 <p><b>INCOMPLETE TASKS: </b></p>
 
@@ -12,7 +12,7 @@
 <% if @incomplete_tasks == [] %>
    <i> <%= "The project has no incomplete tasks" %></i>
 <% else %>
-        <table>
+    <table class="table table-bordered">
         <thead>
             <tr>
             <th>Task</th>
@@ -48,7 +48,7 @@
 <% else %>
 
 
-    <table>
+  <table class="table table-bordered">
       <thead>
         <tr>
           <th>Task</th>

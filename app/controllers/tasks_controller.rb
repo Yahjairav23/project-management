@@ -2,13 +2,17 @@ class TasksController < ApplicationController
   before_action :authorized
   before_action :set_task, only: [:show, :edit, :update, :completed, :destroy]
 
+  def index
+    @ordered_tasks = Task.where(:assignee_id => current_user).order("due_date")
+    @task = Task.new
+  end
+
   def show
     @comment = Comment.new 
     @task_comments = Comment.all.where(task_id: @task.id).order("created_at DESC")
   end
 
   def new
-    
     @task= current_user.created_tasks.build 
   end
 
@@ -20,17 +24,14 @@ class TasksController < ApplicationController
       if @task.created_location == "project" 
           redirect_to project_path(@task.project_id)
 
-      # #if created from USER page, reload USEER page after task creation
+      # #if created from USER page, reload USER page after task creation
         else
-          redirect_to user_path(current_user)
+          redirect_to tasks_path
         end 
     else
       render :new
     end 
   end
-
-
-
 
   def edit
   end 
@@ -46,7 +47,8 @@ class TasksController < ApplicationController
   end 
 
   def completed
-    @task.date = Date.today
+    @task.update(date: Date.today)
+    redirect_to tasks_path
   end
 
   def destroy

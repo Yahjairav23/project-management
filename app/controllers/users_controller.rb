@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def show
     @ordered_tasks = @user.assigned_tasks.order("due_date")
     @task = Task.new
+    @user_teams = @user.teams
   end
 
   def new
@@ -13,16 +14,16 @@ class UsersController < ApplicationController
   end
 
   def create
-    #where should we place the link for this?
     @user = User.new(user_params)
+    @user_team = Userteam.new(params[:team_id])
     if @user.valid?
       @user.save
+      @user_team.save
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
       render :new
     end
-    #create validation errors
   end
 
   def edit
@@ -30,13 +31,14 @@ class UsersController < ApplicationController
 
   def update
     @user.update(user_params)
+    @user_team.update(params[:team_id])
     if @user.valid?
       @user.save 
+      @user_team.save
       redirect_to user_path(@user)
     else
       render :edit
     end
-    #create validaion errors
   end
 
   def destroy
@@ -44,7 +46,7 @@ class UsersController < ApplicationController
   end
 
   def home
-        
+    
   end
 
   private
@@ -53,6 +55,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   def user_params
-    params.require(:user).permit(:name, :age, :bio, :team_id)
+    params.require(:user).permit(:name, :age, :bio)
   end
 end

@@ -21,16 +21,13 @@
 
     <h4>Tasks:</h4>
 
-    <% 3.times { %>
     <%=  f.fields_for :tasks do |t| %>
-        <div>
+        <div class="row">
         <%= t.label :description %>
         <%= t.text_field :description %>
     
         <%= t.label :due_date %>
         <%= t.date_field :due_date %>
-
-        <%= t.hidden_field :project_id, value: @project.id %>
     
         <%= t.label :assigned_to %>
         <%= t.collection_select(:assignee_id, User.all, :id, :name) %>
@@ -40,10 +37,12 @@
     
         <%= t.label :status %>
         <%= t.select :status, options_for_select([ "Planned", "In Progress", "Complete"]) %>
-    
-        </div>
-    <% end %>
-    <% } %> 
+
+        <%= t.hidden_field :creator_id, value: current_user.id %></br>
+        <%= t.hidden_field :created_location, value: "project" %>
+        </div> 
+
+    <% end %></br>
 
     <%= f.submit %> 
 <% end %>

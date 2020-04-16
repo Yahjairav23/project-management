@@ -1,0 +1,52 @@
+<h1>Hello <%=current_user.name%>! Here are your tasks:</h1>
+
+<%if @ordered_tasks == []%>
+   <div> <%= current_user.name%> does not have any tasks at this time. </div>
+<%else%>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Project Name</th>
+            <th>Task Description</th>
+            <th>Task Due Date</th>
+            <th>Task Status</th>
+            <th>Mark As Complete<th>
+            <th>Edit<th>
+            <th>Delete<th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <%@ordered_tasks.each do |task|%>
+        <tr>
+            <%if task.completed?%>
+                <td><%=link_to task.project.name, project_path(task.project)%></td>
+                <td><strike><%=link_to task.description, task_path(task)%><strike></td>
+                <td><%=task.due_date%></td>
+                <td><%=task.status%></td>
+                <td>✔️</td>
+                <td><%=link_to "Edit Task", edit_task_path(task)%></td>
+                <td><%=link_to "Delete Task", task_path(task), method: :delete, data: {confirm: "Are you sure?"}%></td>
+            <%else%>
+                <td><%=link_to task.project.name, project_path(task.project)%></td>
+                <td><%=link_to task.description, task_path(task)%></td>
+                <td><%=task.due_date%></td>
+                <td><%=task.status%></td>
+                <td><%=link_to "Complete", completed_task_path(task), method: :patch%></td>
+                <td><%=link_to "Edit Task", edit_task_path(task)%></td>
+                <td><%=link_to "Delete Task", task_path(task), method: :delete, data: {confirm: "Are you sure?"}%></td>
+            <%end%>
+        </tr>
+        <%end%>
+    </tbody>
+</table>
+<%end%>
+
+
+    <br>
+
+    <h4>Create A New Task</h4>
+    <%=render "task_form"%>
+
+
+<br>

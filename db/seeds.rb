@@ -11,16 +11,26 @@ Team.destroy_all
 Task.destroy_all
 
 #TEAMS 
-team1= Team.create(name:"Team {Browns}")
-team2= Team.create(name:"Team Flatiron")
+team1= Team.create(name: "Team {Browns}")
+team2= Team.create(name: "Team Flatiron")
 
 #USERS
-u1 = User.create(name: "Lilly", age: "27", bio: "Ready to get rolling!", team_id: team1.id, username: "lilly", password: "lpassword")
-u2 = User.create(name: "Norris", age: "30", bio: "Did someone say 'Project'???", team_id: team1.id, username: "norris", password: "npassword")
-u3 = User.create(name: "Anne", age: "24", bio: "Nothing but finished tasks.", team_id: team1.id, username: "anne", password: "apassword")
-u4 = User.create(name: "Michael", age: "24", bio: "Project Master", team_id: team2.id, username: "michael", password: "mpassword")
-u5 = User.create(name: "Gina", age: "32", bio: "My kids are my life... sometimes.", team_id: team2.id, username: "gina", password: "gpassword")
-u6 = User.create(name: "Brandon", age: "28", bio: "Task Complete", team_id: team2.id, username: "brandon", password: "bpassword")
+u1 = User.create(name: "Lilly", age: "27", bio: "Ready to get rolling!", username: "lilly", password: "lpassword")
+u2 = User.create(name: "Norris", age: "30", bio: "Did someone say 'Project'???", username: "norris", password: "npassword")
+u3 = User.create(name: "Anne", age: "24", bio: "Nothing but finished tasks.", username: "anne", password: "apassword")
+u4 = User.create(name: "Michael", age: "24", bio: "Project Master", username: "michael", password: "mpassword")
+u5 = User.create(name: "Gina", age: "32", bio: "My kids are my life... sometimes.", username: "gina", password: "gpassword")
+u6 = User.create(name: "Brandon", age: "28", bio: "Task Complete", username: "brandon", password: "bpassword")
+
+#USERTEAMS
+ut1 = Userteam.create(user_id: u1.id, team_id: team1.id)
+ut2 = Userteam.create(user_id: u2.id, team_id: team1.id)
+ut3 = Userteam.create(user_id: u3.id, team_id: team1.id)
+ut4 = Userteam.create(user_id: u4.id, team_id: team2.id)
+ut5 = Userteam.create(user_id: u5.id, team_id: team2.id)
+ut6 = Userteam.create(user_id: u6.id, team_id: team2.id)
+ut7 = Userteam.create(user_id: u1.id, team_id: team2.id)
+ut8 = Userteam.create(user_id: u2.id, team_id: team2.id)
 
 
 #PROJECTS 

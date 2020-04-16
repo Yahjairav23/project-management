@@ -11,21 +11,20 @@
 
   <body>
   <div>
-    <% if session[:user_id].nil? %>
-      <%=link_to "Please Login", login_path%>
-      <%=link_to "Sign Up", new_user_path%>
-    <%else%>
-      Welcome back, <%=current_user.name%> !
-      <%=link_to "Logout", logout_path%>
-    <%end%>
-      </div>
-    <br>
     <%if !current_user.nil?%>
       <div class="topnav">
-        <%=link_to "User", user_path(current_user)%>
-        <%=link_to "Team", team_path(current_user.team_id)%>
+        <%=link_to "Tasks", tasks_path%>
+        <%=link_to "Team", teams_path%>
         <%= link_to "Projects", projects_path %>
+        <%=link_to "Welcome, #{current_user.name}", user_path(current_user)%>
+        <%=link_to "Logout", logout_path%>
         
+      </div>
+      
+    <%else%>
+      <div class="topnav">
+        <%=link_to "Please Login", login_path%>
+        <%=link_to "Sign Up", new_user_path%>
       </div>
     <%end%>
 

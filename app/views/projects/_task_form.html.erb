@@ -19,6 +19,7 @@
 
     
     <%= f.hidden_field :project_id, value: @project.id %>
+    <%= f.hidden_field :creator_id, value: current_user.id %>
     <%= f.hidden_field :created_location, value: "project" %>
 
     <p><%= f.submit %> </p>

@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
-    @projects = Project.where(:team_id => current_user.team_id)
+    @projects = Project.where(:team_id => current_user.teams)
   end
 
   def show
@@ -30,6 +30,7 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new 
+    3.times {@project.tasks.build}
   end
 
   def create
@@ -38,7 +39,6 @@ class ProjectsController < ApplicationController
       @project.save
       redirect_to project_path(@project)
     else
-      3.times {@project.tasks.build}
       render :new
     end
   end
@@ -77,7 +77,20 @@ class ProjectsController < ApplicationController
   end
 
   def project_params 
-    params.require(:project).permit(:name, :start_date, :end_date, :description, :team_id, :status, tasks_attributes: [:project_id, :creator_id, :assignee_id, :priority, :description, :due_date, :status, :created_location])
+    params.require(:project).permit(:name, 
+      :start_date, 
+      :end_date, 
+      :description, 
+      :team_id, 
+      :status, 
+        tasks_attributes: [
+          :creator_id, 
+          :assignee_id, 
+          :priority, 
+          :description, 
+          :due_date, 
+          :status, 
+          :created_location])
   end 
 
 

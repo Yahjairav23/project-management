@@ -2,6 +2,10 @@ class TeamsController < ApplicationController
   before_action :authorized
   before_action :find_team, only: [:show, :edit, :update]
 
+  def index
+    @teams = current_user.teams
+  end
+
   def show
   end
 
@@ -24,9 +28,7 @@ class TeamsController < ApplicationController
 
   def destroy
     Team.destroy(params[:id])
-    
-    #where should we redirect to?
-
+    redirect_to home_path
   end
 
   private
