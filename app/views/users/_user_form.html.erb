@@ -1,18 +1,11 @@
 <%=render partial: "shared/error_messages", locals: {new_object: @user} %>
 
-<%=form_for @user do |t|%> 
-    <label>Name:</label>
+<%=bootstrap_form_for @user do |t|%> 
     <%=t.text_field :name%><br>
-    <label>Age:</label>
     <%=t.text_field :age%><br>
-    <label>Bio:</label>
-    <%=t.text_field :bio%><br>
-    <label>Please select the team you are a part of, if any:</label>
-    <%=t.collection_select :team_id, Team.all, :id, :name, { include_blank: true}%><br>
-    <label>Username:</label>
+    <%=t.text_area :bio%><br>
     <%=t.text_field :username%><br>
-    <label>Password:</label>
     <%=t.password_field :password%>
 
-    <%=t.submit%>
+    <%=t.submit "Submit", class: "btn btn-primary" %>  
 <%end%>

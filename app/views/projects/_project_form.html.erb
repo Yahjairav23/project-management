@@ -9,7 +9,9 @@
       <tr><td>Name</td><td><%= f.text_area :name, hide_label: true  %></td></tr>
       <tr><td>Start</td><td><%= f.date_field :start_date, hide_label: true  %></td></tr>
       <tr><td>End</td><td><%= f.date_field :end_date, hide_label: true  %></td></tr>
+    <%if !@teams == []%>
       <tr><td>Team</td><td><%= f.collection_select(:team_id, current_user.teams, :id, :name, {hide_label: true, include_blank: true}) %></td></tr>
+    <%end%>
       <tr><td>Status</td><td><%= f.select :status, options_for_select(["Planned", "In Progress", "Complete"]), {hide_label: true} %></td></tr>
       <tr><td>Description</td><td><%= f.text_area :description, hide_label: true  %></td></tr>
       <tr><td></td><td><%= f.submit "Create", class: "btn btn-primary"  %>  <%= link_to "Cancel", projects_path, class: "btn btn-danger" %> </td></tr>

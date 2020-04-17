@@ -19,7 +19,8 @@
                 <ul><h5><%@user_teams.each do |team| %>
                     <li><%= link_to team.name, team_path(team)%></li>
                 <%end%></h5></ul>
-
+                    <%= link_to "Join A Team", new_userteam_path%><br>
+    
             <%elsif @user.teams != nil%>
                 <br><h4>Team(s):</h4>
                 <ul><h5><%@user_teams.each do |team| %>
@@ -31,7 +32,7 @@
                 <br>
                 <%= link_to "View Current Tasks", tasks_path%><br>
                 <%=link_to "Edit Profile", edit_user_path(@user)%><br>
-                <%=link_to "Delete Delete", user_path(@user), :method => :delete, data: {confirm: "Are you sure you want to delete your profile? We'd hate to see you go!"}%><br>
+                <%=link_to "Delete", user_path(@user), :method => :delete, data: {confirm: "Are you sure you want to delete your profile? We'd hate to see you go!"}%><br>
             <%end%>
         </div>
         </div>

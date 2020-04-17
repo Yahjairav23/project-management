@@ -4,6 +4,8 @@ class TasksController < ApplicationController
 
   def index
     @ordered_tasks = Task.where(:assignee_id => current_user).order("due_date")
+    @completed_tasks = @ordered_tasks.select{|task| task.date != nil}
+    @incomplete_tasks = @ordered_tasks.select{|task| task.date == nil}
     @task = Task.new
   end
 

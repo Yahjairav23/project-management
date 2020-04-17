@@ -9,6 +9,7 @@ User.destroy_all
 Project.destroy_all
 Team.destroy_all
 Task.destroy_all
+Userteam.destroy_all
 
 #TEAMS 
 team1= Team.create(name: "Team {Browns}")

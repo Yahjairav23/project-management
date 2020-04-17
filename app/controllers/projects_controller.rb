@@ -3,6 +3,7 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
+    #Need to fix @projects so projects with no team are shown.
     @projects = Project.where(:team_id => current_user.teams)
 
     @completed_projects = []
@@ -47,6 +48,7 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new 
+    @teams = current_user.teams
     
     3.times {@project.tasks.build}
   end

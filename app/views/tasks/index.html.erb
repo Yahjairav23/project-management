@@ -1,61 +1,49 @@
-  
- 
+
+
 <div class="container">
-  <div class="row justify-content-start">
-    
-    <div class="text-center">
-    <div class="col-md-4">
-    <div class="text-right">
-    
-        <h1>Tasks</h1>
-    </div>
-    <br>
+<div class="row justify-content-start">
+  
+  <div class="text-center">
+  <div class="col-md-4">
+  <div class="text-right">
+  
+      <h1>Tasks</h1>
+  </div>
+  <br>
 <div>
-    <h4>Create A New Task</h4>
-    <%=render "task_form"%>
-    </div>
+  <h4>Create A New Task</h4>
+  <%=render "task_form"%>
+  </div>
 
 </div>
 </div>
 
 <div class="col-md-8">
-<%if @ordered_tasks == []%>
-   <div> <%= current_user.name%> does not have any tasks at this time. </div>
-<%else%>
-<br>
-<table class="table table-hover">
-    
-    <thead>
-        <tr>
-        
-            <th>Project</th>
-            <th>Task</th>
-            <th>Due Date</th>
-            <th>Status</th>
-            <th>Complete</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-    
-    
-    <tbody>
-        <%@ordered_tasks.each do |task|%>
-        <tr>
-            <%if task.completed?%>
-                
-                <td><%if !@task.project.nil?%> <%= link_to task.project.name, project_path(@task.project.id) %><%end%></td>
-                <td><s><%=link_to task.description, task_path(task)%></s></td>
-                <td><%=task.due_date%></td>
-                <td><%=task.status%></td>
-                <td> <%=fa_icon("check")%></td>
-                <td><%=link_to edit_task_path(task) do %>
-                        <%= fa_icon("edit") %>
-                        <%end%></td>
-                <td><%=link_to task_path(task), method: :delete, data: {confirm: "Are you sure?"} do %>
-                        <%= fa_icon("trash-alt") %>
-                        <%end%></td>
-            <%else%>
+
+
+
+<h4>INCOMPLETE </h4>
+
+
+<% if @incomplete_tasks == [] %>
+ <i> <%= current_user.name%> does not have any tasks at this time. </i>
+<% else %>
+<table class="table">
+      <thead>
+          <tr>
+          <th>Project</th>
+          <th>Task</th>
+          <th>Due Date</th>
+          <th>Status</th>
+          <th>Complete</th>
+          <th>Edit</th>
+          <th>Delete</th>
+          </tr>
+      </thead>
+
+      <tbody>
+      <% @incomplete_tasks.each do |task| %>
+          <tr>
                 <td><% if task.project.nil?%>
                     <%= "n/a"%>
                 <%else%>
@@ -73,18 +61,62 @@
                 <td><%=link_to task_path(task), method: :delete, data: {confirm: "Are you sure?"} do %>
                         <%= fa_icon("trash-alt") %>
                         <%end%></td>
-                    
-            <%end%>
+          </tr>
+      <% end %> 
+      </tbody>
+      </table>
+
+  <% end %>
+
+
+
+  <br></br>
+
+
+  
+<% if @completed_tasks != [] %>
+<h4>COMPLETE</h4>
+
+
+<table class="table">
+    <thead>
+      <tr>
+            <th>Project</th>
+            <th>Task</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>Complete</th>
+            <th>Edit</th>
+            <th>Delete</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <% @completed_tasks.each do |task| %>
+        <tr>
+            <td><% if task.project.nil?%>
+                    <%= "n/a"%>
+                <%else%>
+                    <%=link_to task.project.name, project_path(task.project)%>
+                <%end%></td></td>
+            <td><s><%=link_to task.description, task_path(task)%></s></td>
+            <td><%=task.due_date%></td>
+            <td><%=task.status%></td>
+            <td> <%=fa_icon("check")%></td>
+            <td><%=link_to edit_task_path(task) do %>
+                    <%= fa_icon("edit") %>
+                    <%end%></td>
+            <td><%=link_to task_path(task), method: :delete, data: {confirm: "Are you sure?"} do %>
+                    <%= fa_icon("trash-alt") %>
+                    <%end%></td>
         </tr>
-        <%end%>
-    </tbody>
-</table>
+    <% end %> 
+  </tbody>
+  </table>
+<% end %> 
 
-<%end%>
-</div>
 
- 
 
-</div>
+
 
 </div>

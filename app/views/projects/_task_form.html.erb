@@ -12,7 +12,7 @@
     <%= f.collection_select(:assignee_id, User.all, :id, :name) %>
 
     <%= f.label :priority %>
-    <%= f.select :priority, options_for_select([ "LOW", "MEDIUM", "HIGH"]) %>
+    <%= f.select :priority, options_for_select([ "Low", "Medium", "Hight"]) %>
 
     <%= f.label :status %>
     <%= f.select :status, options_for_select(["Planned", "In Progress", "Complete"]) %>

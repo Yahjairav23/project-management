@@ -1,13 +1,61 @@
-<h1>Login</h1>
 
-<div class= "error">
-    <%=flash["error"]%>
+ <!DOCTYPE html>
+ <html>
+   <head>
+     <title>ProjectManager</title>
+     <%= csrf_meta_tags %>
+     <%= csp_meta_tag %>
+ 
+     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+     
+   </head>
+ 
+   <body>
+     <header>
+     <div class="logo">
+       <%= link_to (image_tag("OverProjectcopy.png", width: "150px")), home_path %>
+     </div>
+       <nav>
+         <ul class="nav_links">
+           <li><%=link_to "Tasks", tasks_path%></li>
+           <li><%=link_to "Teams", teams_path%></li>
+           <li><%= link_to "Projects", projects_path %></li>
+         </ul>
+       </nav>
+       <%=link_to "Sign Up", new_user_path%>
+       <%=link_to "Login", login_path%>
+     </header>
+ 
+     
+
+     <div class="container-fluid"> 
+    <div class="row text-center">
+        <div class="col-md-12 col-sm-12 banner">
+            
+            <h2>Login to Task Team</h2>
+            <p>Where we make project management, managable.</p></br>
+
+
+            <div class= "error">
+            <%=flash["error"]%>
+        </div>
+        <%=form_tag login_path do%>
+            <%= label :username, "Username"%>
+            <%= text_field_tag :username %><br>
+            <%= label :password, "Password" %>
+            <%= password_field_tag :password %><br>
+            <%= submit_tag "Login" %>
+        <%end%>
+
+    </div>
 </div>
+   
+ 
+     <%= yield %>
+ 
+     
+   </body>
+ </html>
+ 
 
-<%=form_tag login_path do%>
-    <%= label :username, "Username"%>
-    <%= text_field_tag :username %>
-    <%= label :password, "Password" %>
-    <%= password_field_tag :password %>
-    <%= submit_tag "Login"%>
-<%end%>

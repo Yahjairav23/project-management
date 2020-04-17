@@ -15,10 +15,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user_team = Userteam.new(params[:team_id])
     if @user.valid?
       @user.save
-      @user_team.save
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
@@ -31,10 +29,8 @@ class UsersController < ApplicationController
 
   def update
     @user.update(user_params)
-    @user_team.update(params[:team_id])
     if @user.valid?
       @user.save 
-      @user_team.save
       redirect_to user_path(@user)
     else
       render :edit
@@ -43,6 +39,7 @@ class UsersController < ApplicationController
 
   def destroy
     User.destroy(params[:id])
+    redirect_to home_path
   end
 
   def home
@@ -55,6 +52,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   def user_params
-    params.require(:user).permit(:name, :age, :bio)
+    params.require(:user).permit(:name, :age, :bio, :username, :password)
   end
 end

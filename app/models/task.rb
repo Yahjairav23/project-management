@@ -8,7 +8,7 @@ class Task < ApplicationRecord
     validates :description, presence: true
 
     validates :priority, presence: true 
-    validates :priority, acceptance: { accept: ['HIGH', 'MEDIUM', 'LOW'] }
+    validates :priority, acceptance: { accept: ['High', 'Medium', 'Low'] }
 
     validates :status, presence: true 
     validates :status, acceptance: { accept: ['Planned', 'In Progress', 'Complete'] }

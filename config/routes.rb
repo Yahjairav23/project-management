@@ -8,6 +8,7 @@ resources :tasks do
 end
 resources :projects
 resources :comments, only: [:show, :new, :create]
+resources :userteams, only: [:new, :create, :destroy]
   
 get "/", to: "users#home", as: "home"
 get "/login", to: "sessions#login"

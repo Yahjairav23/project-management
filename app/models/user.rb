@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     has_secure_password
 
-    has_many :userteams
+    has_many :userteams, dependent: :destroy
     has_many :teams, through: :userteams
     
     has_many :created_tasks, :class_name => 'Task', :foreign_key => 'creator_id', dependent: :destroy

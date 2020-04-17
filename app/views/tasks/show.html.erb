@@ -31,9 +31,13 @@
             <td><%= @task.priority %></td>
         </tr>
         <tr>
-            <td>Due Date:</td>
+            <td>Due:</td>
             <td><%= @task.due_date %></td>
         </tr>
+        <tr>
+        <td>Completed:</td>
+        <td><%= @task.date %></td>
+    </tr>
         <tr>
             <td>Project: </td>
             <td><%if !@task.project.nil?%><%= link_to @task.project.name, project_path(@task.project.id) %><%end%></td>

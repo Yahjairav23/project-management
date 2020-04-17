@@ -1,0 +1,7 @@
+    <%= bootstrap_form_for(@userteam,:class => "form-inline", label_errors: true) do |f| %>
+        <%= f.collection_select(:team_id, Team.all, :id, :name, {include_blank: true}) %>
+        
+        <%= f.collection_select(:user_id, User.all, :id, :name, {selected: current_user.id}) %>
+        
+        <%=f.submit "Submit", class: "btn btn-primary" %>  
+    <%end%>

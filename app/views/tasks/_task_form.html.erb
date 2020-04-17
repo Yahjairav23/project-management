@@ -8,13 +8,12 @@
 
         <%= f.date_field :due_date %>
 
-        <%= f.collection_select(:project_id, Project.all, :id, :name) %>
+        <%= f.collection_select(:project_id, Project.all, :id, :name, {include_blank: true}) %>
+        
+        <%= f.collection_select(:assignee_id, User.all, :id, :name, {selected: current_user.id}) %>
 
         
-        <%= f.collection_select(:assignee_id, User.all, :id, :name) %>
-
-        
-        <%= f.select :priority, options_for_select([ "LOW", "MEDIUM", "HIGH"]) %>
+        <%= f.select :priority, options_for_select([ "Low", "Medium", "High"]) %>
 
         
         <%= f.select :status, options_for_select(["Planned", "In Progress", "Complete"]) %>
