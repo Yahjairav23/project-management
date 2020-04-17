@@ -1,65 +1,96 @@
-<h1>Project: <%= @project.name %></h1>
-<h3><%= @project.description %>  </h3>
 
-<div>State Date: <%= @project.start_date %> </div>
-<div>End Date: <%= @project.end_date %> </div>
-<div>Status: <%= @project.status %> </div>
-<div>Team: <%= link_to @project.team.name, team_path(@project.team_id) %> </div>
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-4">
+      <h1><%= @project.name %></h1>
+      <p class="lead"><%= @project.description %>  </p>
+      <div><%= link_to "Edit", edit_project_path(@project.id) %> | <%= link_to "Delete", @project, method: :delete, data: { confirm: 'Are you sure?' } %> | <%= link_to "All Projects", projects_path %></div>
+      </br>
 
-<p><b>INCOMPLETE TASKS: </b></p>
 
-
-<% if @incomplete_tasks == [] %>
-   <i> <%= "The project has no incomplete tasks" %></i>
-<% else %>
-    <table class="table table-bordered">
+</div>
+<div class="col-md-2"></div>
+<div class="col-md-3">
+</br>
+        <table class="table">
         <thead>
-            <tr>
-            <th>Task</th>
-            <th>Assigned To</th>
-            <th>Due Date</th>
-            <th>Status</th>
-            </tr>
-        </thead>
 
+        </thead>
         <tbody>
-        <% @incomplete_tasks.each do |t| %>
-            <tr>
-            <td><%=  link_to t.description, task_path(t.id) %></td>
-            <td><%=  link_to t.assignee.name, user_path(t.assignee.id) %></td>
-            <td><%=  t.due_date %></td>
-            <td><%=  t.status %></td>
-            </tr>
-        <% end %> 
+        <tr>
+          <td><b>Status:</b></td><td> <%= @project.status %></td>
+          <td><b>Team:</b></td><td> <%= link_to @project.team.name, team_path(@project.team.id) %></td>
+        </tr>
+
         </tbody>
         </table>
 
-    <% end %>
+</div>
+<div class="col-md-2"></div>
+</div>
+
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-3">
+  
+
+<h4> CREATE A TASK </h4>
+
+<%=render partial: "shared/error_messages", locals: {new_object: @task}%>
+
+<%= bootstrap_form_for(@task, layout: :inline) do |f| %>
+
+<table class="table">
+    <thead>
+    <tr>
+    <th>Field</th>
+    <th>Value </th>
+    </tr>
+</thead>
+
+<tbody>
+    <tr><td>Item</td><td><%= f.text_area :description, hide_label: true  %></td></tr>
+    <tr><td>Due</td><td><%= f.date_field :due_date, hide_label: true  %></td></tr>
+    <tr><td>Assignee</td><td><%= f.collection_select(:assignee_id, User.all, :id, :name, {hide_label: true, include_blank: true}) %></td></tr>
+    <tr><td>Priority</td><td><%= f.select :priority, options_for_select([ "Low", "Medium", "High"]), {hide_label: true} %></td></tr>
+    <tr><td>Status</td><td><%= f.select :status, options_for_select(["Planned", "In Progress", "Complete"]), {hide_label: true} %></td></tr>
+    <tr><td></td><td><%= f.submit "Create", class: "btn btn-primary"  %> </td></tr>
+        
+
+    <%= f.hidden_field :project_id, value: @project.id %>
+    <%= f.hidden_field :creator_id, value: current_user.id %>
+    <%= f.hidden_field :created_location, value: "project" %>
+  
+
+      </tbody>
+      </table>
+
+<% end %>
+</div>
+
+
+<div class="col-md-6">
 
 
 
+<h4>OPEN TASKS </h4>
 
 
-
-<p><b>COMPLETE TASKS</b></p>
-
-<% if @completed_tasks == [] %>
-    <i><%= "The project has no complete tasks" %></i>
+<% if @incomplete_tasks == [] %>
+ <i> <%= "The project has no incomplete tasks" %></i>
 <% else %>
-
-
-  <table class="table table-bordered">
+<table class="table">
       <thead>
-        <tr>
+          <tr>
           <th>Task</th>
           <th>Assigned To</th>
           <th>Due Date</th>
           <th>Status</th>
-        </tr>
+          </tr>
       </thead>
 
       <tbody>
-      <% @completed_tasks.each do |t| %>
+      <% @incomplete_tasks.each do |t| %>
           <tr>
           <td><%=  link_to t.description, task_path(t.id) %></td>
           <td><%=  link_to t.assignee.name, user_path(t.assignee.id) %></td>
@@ -67,19 +98,51 @@
           <td><%=  t.status %></td>
           </tr>
       <% end %> 
-    </tbody>
-    </table>
+      </tbody>
+      </table>
+
+  <% end %>
+
+
+
+  <br></br>
+
+
+  
+<% if @completed_tasks != [] %>
+<h4>COMPLETE</h4>
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th>Task</th>
+        <th>Assigned To</th>
+        <th>Due Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <% @completed_tasks.each do |t| %>
+        <tr>
+        <td><%=  link_to t.description, task_path(t.id) %></td>
+        <td><%=  link_to t.assignee.name, user_path(t.assignee.id) %></td>
+        <td><%=  t.due_date %></td>
+        <td><%=  t.status %></td>
+        </tr>
+    <% end %> 
+  </tbody>
+  </table>
 <% end %> 
 
 
-<h4> CREATE A NEW TASK FOR THIS PROJECT </h4>
-
-<%=render "task_form"%>
 
 
 
-<p>MENU</p>
-<div><%= link_to "Edit this Project", edit_project_path(@project.id) %></div>
-<div><%= link_to "Delete this Project", @project, method: :delete, data: { confirm: 'Are you sure?' } %> </div>
-<div><%= link_to "Return to Project Index", projects_path %></div>
+</div>
 
+
+<div class="col-md-1">
+</div>
+</div>

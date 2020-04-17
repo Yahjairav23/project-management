@@ -6,7 +6,7 @@
     <%= f.text_field :description %>
 
     <%= f.label :due_date %>
-    <%= f.date_field :due_date %>
+    <%= f.date_field :due_date %></br>
 
     <%= f.label :assigned_to %>
     <%= f.collection_select(:assignee_id, User.all, :id, :name) %>

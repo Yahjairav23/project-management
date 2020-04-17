@@ -1,15 +1,12 @@
 <%=render partial: "shared/error_messages", locals: {new_object: @task}%>
 
-
-<%= bootstrap_form_for @task do |f| %>
+<br>
+<%= bootstrap_form_for(@task,:class => "form-inline", label_errors: true) do |f| %>
         
-        <%= f.text_field :description %>
+        <%= f.text_field :description, placeholder: "Description" %>
 
-        
         <%= f.date_field :due_date %>
 
-    
-        
         <%= f.collection_select(:project_id, Project.all, :id, :name) %>
 
         
@@ -22,7 +19,7 @@
         <%= f.select :status, options_for_select(["Planned", "In Progress", "Complete"]) %>
 
 
-        <p><%= f.submit %> </p>
+        <p><%= f.submit "Submit", class: "btn btn-primary" %> </p>
         
 
 

@@ -1,7 +1,25 @@
-<h1>Your Teams:</h1>
+<div class="col-md-6 col-md-offset-3">
+<div class="jumbotron">
+    <div class="text-center">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="page-header">
+                <h1>Teams:</h1>
+            </div>
+        </div>
 
-<ul>
-<%@teams.each do |team|%>
-    <h4><li><%=link_to team.name, team_path(team.id)%></li></h4>
-<%end%>
-</ul>
+        <div class="text-left">
+        <div class="col-md-4">
+            <div class="page-header">
+            <ul>
+            <%@teams.each do |team|%>
+                <p class="lead"><%=link_to team.name, team_path(team.id)%></p>
+            <%end%>
+            </ul>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+</div>

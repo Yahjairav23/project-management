@@ -7,19 +7,31 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
   </head>
 
   <body>
-  <div>
-    <%if !current_user.nil?%>
-      <div class="topnav">
-        <%=link_to "Tasks", tasks_path%>
-        <%=link_to "Team", teams_path%>
-        <%= link_to "Projects", projects_path %>
-        <%=link_to "Welcome, #{current_user.name}", user_path(current_user)%>
-        <%=link_to "Logout", logout_path%>
-        
+    <div>
+      <%if !current_user.nil?%>
+      <nav class="navbar navbar-default">
+        <h3>
+          <div class="col-md-8">
+          <div class="text-left">
+            <%=link_to "Tasks", tasks_path%>
+            <%=link_to "Team", teams_path%>
+            <%= link_to "Projects", projects_path %>
+          </div>
+          </div>
+
+          <div class="col-md-4">
+          <div class="text-right">
+            Welcome, <%=link_to current_user.name, user_path(current_user)%>
+            <%=link_to "Logout", logout_path%>
+          </div>
+          </div>
+        </h3>
       </div>
+    </div>
       
     <%else%>
       <div class="topnav">

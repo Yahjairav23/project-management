@@ -1,39 +1,84 @@
-<h1>Task: <%= @task.description %></h3>
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-2">
+    <h1>Task</h1>
+    <p class="lead">Have you finished this task? </p>
 
-<h4>Status: <%= @task.status %></h4>
-<h4>Priority: <%= @task.priority %></h4>
-<h4>Due Date: <%= @task.due_date %></h4>
-<h4>Project: <%= link_to @task.project.name, project_path(@task.project.id) %></h4>
-
-<div>Assigned to: <%= link_to @task.assignee.name, user_path(@task.assignee.id) %></div>
-<div>Created by: <%= link_to @task.creator.name, user_path(@task.creator.id) %></div>
-
-<p>WRITE A COMMENT</p>
-
-<%=render "comment_form"%>
-
-<p>COMMENTS</p>
-
-    <% if @task_comments == [] %> 
-        <i>There are no comments on this task. Write one above!</i>
-
-    <% else %>
-        <div>
-            <% @task_comments.each do |c| %>
-                <div>----------------------------</div>
-                <div><b>Date:</b> <%= c.created_at.to_date %> </div>
-                <div><b>By:</b> <%= link_to c.user.name, user_path(c.user.id) %> </div> 
-                <div><b>Comment:</b> </div>
-                <div> <%= c.comment %> </div>
-                <div>----------------------------</div>
-            <% end %> 
-        </div>
-    <% end %>
+    <p><%= link_to "Mark Complete", new_project_path, class: "btn btn-primary" %> </p>
 
 
 
-</br>
-<div>Mark this Task Complete</div>
-<div><%= link_to "Edit this Task", edit_task_path(@task) %></div>
-<div><%= link_to 'Delete this Task', @task, method: :delete, data: { confirm: 'Are you sure?' } %>
-<div><%= link_to "Return to Project", project_path(@task.project.id) %></div>
+</div>
+<div class="col-md-4">
+
+
+    <h2><%= @task.description %></h2>
+    <br>
+    <div><%= link_to "Edit", edit_task_path(@task) %> | <%= link_to 'Delete', @task, method: :delete, data: { confirm: 'Are you sure?' } %> | <%= link_to "Return to Project", project_path(@task.project.id) %></div>
+    </br>
+
+    <table class="table">
+        <tr>
+            <td>Assigned to:</td>
+            <td> <%= link_to @task.assignee.name, user_path(@task.assignee.id) %></td>
+        </tr>
+        <tr>
+            <td>Status:</td>
+            <td><%= @task.status %></td>
+        </tr>
+        <tr>
+            <td>Priority:</td>
+            <td><%= @task.priority %></td>
+        </tr>
+        <tr>
+            <td>Due Date:</td>
+            <td><%= @task.due_date %></td>
+        </tr>
+        <tr>
+            <td>Project: </td>
+            <td><%= link_to @task.project.name, project_path(@task.project.id) %></td>
+        </tr>
+        <tr>
+            <td>Created by:</td>
+            <td><%= link_to @task.creator.name, user_path(@task.creator.id) %></td>
+        </tr>
+
+
+    </table>
+
+
+
+</div>
+
+
+<div class="col-md-3">
+    <h3>COMMENT</h3>
+    <p class="lead">Any updates on this task? </p>
+
+    <%=render "comment_form"%>
+    </br>
+    <h3>ACTIVITY</h3>
+
+        <% if @task_comments == [] %> 
+        <p class="lead">There are no comments on this task. Write one above!</p>
+
+        <% else %>
+            <div>
+                <% @task_comments.each do |c| %>
+                    <div>____________________________________</div>
+                    <div><b><%= link_to "@" + c.user.name, user_path(c.user.id) %></b> | <%= distance_of_time_in_words(c.created_at, Time.now, include_seconds: false) %> ago </div> 
+                    </br>
+                    <div> <%= c.comment %> </div>
+
+                <% end %> 
+            </div>
+        <% end %>
+
+    </br>
+
+
+
+</div>
+
+<div class="col-md-2"></div>
+</div>

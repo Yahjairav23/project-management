@@ -23,7 +23,9 @@ class TasksController < ApplicationController
       
       if @task.created_location == "project" 
           redirect_to project_path(@task.project_id)
-
+      elsif 
+          @task.created_location.nil?
+          redirect_to task_path(@task.id)
       # #if created from USER page, reload USER page after task creation
         else
           redirect_to tasks_path

@@ -1,25 +1,34 @@
-<h1><%=@team.name%></h1>
+<div class="row">
+    <div class="col-md-4">
+        <div class="text-right">
+            <h1 class="display-1"><%=@team.name%></h1>
 
-<h3>Team Members:</h3>
-<ul>
-<%@team.users.each do |user|%>
-    <li><%=link_to user.name, user_path(user)%></li>
-<%end%>
-</ul>
-<br>
+        <h3>Team Members:</h3>
+        <ul class="list-unstyled">
+        <blockquote class="blockquote-reverse">
+        <%@team.users.each do |user|%>
+            <li><%=link_to user.name, user_path(user)%></li>
+        <%end%>
+        </blockquote>
+        </ul>
+        <br>
+        </div>
+    </div>
 
-<h3>Current Projects:</h3>
-<ul>
-<%@team.projects.each do |project|%>
-    <li><%=link_to project.name, project_path(project)%></li>
-<%end%>
-</ul>
-<br>
+    <div class="col-md-8">
+        <h2>Current Projects:</h2>
+        <ul class="list-unstyled">
+        <%@team.projects.each do |project|%>
+            <li><p class="lead"><%=link_to project.name, project_path(project)%></p></li>
+        <%end%>
+        </ul>
+        <br>
 
-<%=link_to "Create New Project", new_project_path%>
-<!-- need an add user to team button --> <br>
-<%=link_to "Edit Team Name", edit_team_path%>
-<%=link_to "Delete Team", team_path(@team), :method => :delete%>
-
+        <%=link_to "Create New Project", new_project_path%>
+        <!-- need an add user to team button --> <br>
+        <%=link_to "Edit Team Name", edit_team_path%>
+        <%=link_to "Delete Team", team_path(@team), :method => :delete%>
+    </div>
+</div>
 
 

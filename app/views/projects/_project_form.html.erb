@@ -1,48 +1,21 @@
 <%=render partial: "shared/error_messages", locals: {new_object: @project}%>
 
-<%= form_for @project do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+  <%= bootstrap_form_for(@project, layout: :inline) do |f| %>
 
-    <%= f.label :start_date %>
-    <%= f.date_field :start_date %>
-    <%= f.label :end_date %>
-    <%= f.date_field :end_date %>
-
-    <%= f.label :status %>
-    <%= f.select :status, options_for_select(["Planned", "In Progress", "Complete"]) %>
-
-    <%= f.label :description %>
-    <%= f.text_field :description %>
-
-    <%= f.label :team %>
-    <%= f.collection_select(:team_id, Team.all, :id, :name) %>
+  <table class="table">
 
 
-    <h4>Tasks:</h4>
-
-    <%=  f.fields_for :tasks do |t| %>
-        <div class="row">
-        <%= t.label :description %>
-        <%= t.text_field :description %>
+  <tbody>
+      <tr><td>Name</td><td><%= f.text_area :name, hide_label: true  %></td></tr>
+      <tr><td>Start</td><td><%= f.date_field :start_date, hide_label: true  %></td></tr>
+      <tr><td>End</td><td><%= f.date_field :end_date, hide_label: true  %></td></tr>
+      <tr><td>Team</td><td><%= f.collection_select(:team_id, Team.all, :id, :name, {hide_label: true, include_blank: true}) %></td></tr>
+      <tr><td>Status</td><td><%= f.select :status, options_for_select(["Planned", "In Progress", "Complete"]), {hide_label: true} %></td></tr>
+      <tr><td>Description</td><td><%= f.text_area :description, hide_label: true  %></td></tr>
+      <tr><td></td><td><%= f.submit "Create", class: "btn btn-primary"  %>  <%= link_to "Cancel", projects_path, class: "btn btn-danger" %> </td></tr>
     
-        <%= t.label :due_date %>
-        <%= t.date_field :due_date %>
-    
-        <%= t.label :assigned_to %>
-        <%= t.collection_select(:assignee_id, User.all, :id, :name) %>
-    
-        <%= t.label :priority %>
-        <%= t.select :priority, options_for_select([ "LOW", "MEDIUM", "HIGH"]) %>
-    
-        <%= t.label :status %>
-        <%= t.select :status, options_for_select([ "Planned", "In Progress", "Complete"]) %>
 
-        <%= t.hidden_field :creator_id, value: current_user.id %></br>
-        <%= t.hidden_field :created_location, value: "project" %>
-        </div> 
+        </tbody>
+        </table>
 
-    <% end %></br>
-
-    <%= f.submit %> 
-<% end %>
+  <% end %>

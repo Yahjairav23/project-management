@@ -42,7 +42,18 @@
   //   color: white;
   // }
 
+//   /*
+//  *= require font-awesome
+//  */
+
 
   @import "bootstrap-sprockets";
   @import "bootstrap";
   @import "rails_bootstrap_forms";
+
+  @import 'font_awesome5_webfont';
+
+  
+  .navbar navbar-default {
+        
+  }

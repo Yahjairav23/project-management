@@ -1,4 +1,15 @@
-<h1>Create a New Task</h1>
-
-<%=render "task_form"%>
-
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-2">
+    <h1>NEW TASK</h1>
+    <p class="lead">Plan your <b>work</b>. <br><b>Work</b> your plan. </p>
+</div>
+<div class="col-md-4">
+    <h2><%= @task.description %></h2>
+    <br>
+    <%=render "task_form"%>
+</div>
+<div class="col-md-3">
+</div>
+<div class="col-md-2"></div>
+</div>

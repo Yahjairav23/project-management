@@ -4,6 +4,23 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.where(:team_id => current_user.teams)
+
+    @completed_projects = []
+    @projects.each do |p|
+      if p.status == "Complete"
+        @completed_projects << p 
+      end 
+    end 
+
+    @incomplete_projects = []
+    @projects.each do |p|
+      if p.status != "Complete"
+        @incomplete_projects << p 
+      end 
+    end 
+    @incomplete_projects = @incomplete_projects.sort_by {|p| p[:start_date]}
+   
+
   end
 
   def show
