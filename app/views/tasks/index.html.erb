@@ -9,11 +9,12 @@
     
         <h1>Tasks</h1>
     </div>
-    
-<div class="jumbotron">
+    <br>
+<div>
     <h4>Create A New Task</h4>
     <%=render "task_form"%>
     </div>
+
 </div>
 </div>
 
@@ -27,11 +28,11 @@
     <thead>
         <tr>
         
-            <th>Project Name</th>
-            <th>Task Description</th>
-            <th>Task Due Date</th>
-            <th>Task Status</th>
-            <th>Mark As Complete</th>
+            <th>Project</th>
+            <th>Task</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>Complete</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -42,7 +43,8 @@
         <%@ordered_tasks.each do |task|%>
         <tr>
             <%if task.completed?%>
-                <td><%=link_to task.project.name, project_path(task.project)%></td>
+                
+                <td><%if !@task.project.nil?%> <%= link_to task.project.name, project_path(@task.project.id) %><%end%></td>
                 <td><s><%=link_to task.description, task_path(task)%></s></td>
                 <td><%=task.due_date%></td>
                 <td><%=task.status%></td>
@@ -54,7 +56,11 @@
                         <%= fa_icon("trash-alt") %>
                         <%end%></td>
             <%else%>
-                <td><%=link_to task.project.name, project_path(task.project)%></td>
+                <td><% if task.project.nil?%>
+                    <%= "n/a"%>
+                <%else%>
+                    <%=link_to task.project.name, project_path(task.project)%>
+                <%end%></td>
                 <td><%=link_to task.description, task_path(task)%></td>
                 <td><%=task.due_date%></td>
                 <td><%=task.status%></td>

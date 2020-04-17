@@ -49,13 +49,13 @@ class TasksController < ApplicationController
   end 
 
   def completed
-    @task.update(date: Date.today)
+    @task.update(date: Date.today, status: "Complete")
     redirect_to tasks_path
   end
 
   def destroy
     @task.destroy
-    redirect_to project_path(@task.project.id)
+    redirect_to tasks_path
   end
 
 

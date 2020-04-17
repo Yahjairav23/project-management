@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def show
     @ordered_tasks = @user.assigned_tasks.order("due_date")
     @task = Task.new
-    @user_teams = @user.teams
+    @user_teams = current_user.teams
   end
 
   def new

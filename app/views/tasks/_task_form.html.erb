@@ -1,6 +1,7 @@
 <%=render partial: "shared/error_messages", locals: {new_object: @task}%>
 
 <br>
+
 <%= bootstrap_form_for(@task,:class => "form-inline", label_errors: true) do |f| %>
         
         <%= f.text_field :description, placeholder: "Description" %>

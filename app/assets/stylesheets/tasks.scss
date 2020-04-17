@@ -2,3 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.text-center h1 {
+    font-size: 80px;
+}
+
+#new_task.new_task.form-group {
+    font-size: 10px;
+    display: inline-block
+}

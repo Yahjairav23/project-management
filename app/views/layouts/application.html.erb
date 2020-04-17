@@ -11,35 +11,31 @@
   </head>
 
   <body>
-    <div>
-      <%if !current_user.nil?%>
-      <nav class="navbar navbar-default">
-        <h3>
-          <div class="col-md-8">
-          <div class="text-left">
-            <%=link_to "Tasks", tasks_path%>
-            <%=link_to "Team", teams_path%>
-            <%= link_to "Projects", projects_path %>
-          </div>
-          </div>
-
-          <div class="col-md-4">
-          <div class="text-right">
-            Welcome, <%=link_to current_user.name, user_path(current_user)%>
-            <%=link_to "Logout", logout_path%>
-          </div>
-          </div>
-        </h3>
-      </div>
+    <header>
+    <div class="logo">
+      <%= link_to (image_tag("OverProjectcopy.png", width: "150px")), home_path %>
     </div>
-      
-    <%else%>
-      <div class="topnav">
-        <%=link_to "Please Login", login_path%>
-        <%=link_to "Sign Up", new_user_path%>
-      </div>
-    <%end%>
+      <nav>
+        <ul class="nav_links">
+          <li><%=link_to "Tasks", tasks_path%></li>
+          <li><%=link_to "Teams", teams_path%></li>
+          <li><%= link_to "Projects", projects_path %></li>
+        </ul>
+      </nav>
+  <%if !current_user.nil?%>
+      <%=link_to "Profile", user_path(current_user)%>
+      <%=link_to "Logout", logout_path%>
+  <% else %>
+      <%=link_to "Sign Up", new_user_path%>
+      <%=link_to "Login", login_path%>
+  <%end %>
+    </header>
+
+    
+  
 
     <%= yield %>
+
+    
   </body>
 </html>

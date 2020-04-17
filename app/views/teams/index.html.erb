@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-8">
             <div class="page-header">
-                <h1>Teams:</h1>
+                <h1>[ Teams ]</h1>
             </div>
         </div>
 
@@ -13,7 +13,7 @@
             <div class="page-header">
             <ul>
             <%@teams.each do |team|%>
-                <p class="lead"><%=link_to team.name, team_path(team.id)%></p>
+                <h2 class="lead"><%=link_to team.name, team_path(team.id)%></h2>
             <%end%>
             </ul>
             </div>

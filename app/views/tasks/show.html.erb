@@ -4,7 +4,7 @@
     <h1>Task</h1>
     <p class="lead">Have you finished this task? </p>
 
-    <p><%= link_to "Mark Complete", new_project_path, class: "btn btn-primary" %> </p>
+    <p><%= link_to "Mark Complete", completed_task_path, :method => :patch, class: "btn btn-primary" %> </p>
 
 
 
@@ -14,7 +14,7 @@
 
     <h2><%= @task.description %></h2>
     <br>
-    <div><%= link_to "Edit", edit_task_path(@task) %> | <%= link_to 'Delete', @task, method: :delete, data: { confirm: 'Are you sure?' } %> | <%= link_to "Return to Project", project_path(@task.project.id) %></div>
+    <div><%= link_to "Edit", edit_task_path(@task) %> | <%= link_to 'Delete', @task, method: :delete, data: { confirm: 'Are you sure?' } %>  <%if !@task.project.nil?%>| <%= link_to "Return to Project", project_path(@task.project.id) %><%end%></div>
     </br>
 
     <table class="table">
@@ -36,7 +36,7 @@
         </tr>
         <tr>
             <td>Project: </td>
-            <td><%= link_to @task.project.name, project_path(@task.project.id) %></td>
+            <td><%if !@task.project.nil?%><%= link_to @task.project.name, project_path(@task.project.id) %><%end%></td>
         </tr>
         <tr>
             <td>Created by:</td>

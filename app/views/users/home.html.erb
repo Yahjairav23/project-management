@@ -1,3 +1,10 @@
 
-<h1> Site Name Here</h1>
+<%if current_user.nil?%>
 
+    <%= render "logged_out_home"%>
+
+<%else%>
+
+    <%=render "logged_in_home"%>
+
+<%end%>

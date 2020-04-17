@@ -47,6 +47,7 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new 
+    
     3.times {@project.tasks.build}
   end
 
