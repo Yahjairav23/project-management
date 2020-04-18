@@ -1,4 +1,4 @@
-class Userteams < ApplicationController
+class UserteamsController < ApplicationController
 
     def new
         @userteam = Userteam.new
@@ -24,6 +24,6 @@ class Userteams < ApplicationController
     private
 
     def userteam_params
-        params.require(:user).permit(:user_id, :team_id)
+        params.require(:userteam).permit(:user_id, :team_id)
       end
 end
