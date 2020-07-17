@@ -3,7 +3,6 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
-    #Need to fix @projects so projects with no team are shown.
     @projects = Project.where(:team_id => current_user.teams)
 
     @completed_projects = []
@@ -25,8 +24,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-     #move to model?
-     #separates out completd tasks 
+     #separates out completed tasks 
     @completed_tasks = []
     @project.tasks.each do |t|
       if t.status == "Complete"
