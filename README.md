@@ -1,4 +1,3 @@
-# Task Team
 
 ![Task Team Logo](/app/assets/images/boxed-artwork3.png)
 
