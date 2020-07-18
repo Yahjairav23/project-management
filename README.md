@@ -26,5 +26,5 @@ that motivates members to complete tasks, in turn being more productive.
 If you do not wish to sign up and create your own account to use Task Team, but would like to demo
 the application, you may use the following login information:
 
-**Username:** lilly
-**Password:** lpassword
+> **Username:** lilly
+> **Password:** lpassword
