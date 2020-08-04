@@ -3,7 +3,7 @@
 
 *Task Team is an application built using Ruby on Rails.*
 
-Task Team was built to provide an organized and sufficient way to manage projects and tasks.
+Task Team was built to provide an organized and efficient way to manage projects and tasks.
 
 It was built with full CRUD functionality. 
 * That being said, a user has the ability to:
